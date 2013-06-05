@@ -50,7 +50,14 @@ $(document).ready(function() {
         
   }
   
-  $('#submit').click(function(){
+  $('#submit').click(submit);
+  $("#guess").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#submit").click();
+    }
+  });
+  
+  function submit(){
     
     var newGuess = $('#guess').val();
     if (newGuess == answer) {
@@ -61,15 +68,14 @@ $(document).ready(function() {
       return;
     }
 
-//    messageText = submitGuess(newGuess);
     $('#message').html(submitGuess(newGuess));
-    console.log("old guess is " + oldGuess + " and the answer is " + answer);
+    //console.log("old guess is " + oldGuess + " and the answer is " + answer);
     if (changeOldGuess) {
       oldGuess = newGuess;
     } else {
       changeOldGuess = true;
     }
 
-  });
+  }
   
 });
